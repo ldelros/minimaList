@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("MainActivity",inputField.getText().toString()); // Testing purposes using LogCat
+                        
                     }
                 });
 
