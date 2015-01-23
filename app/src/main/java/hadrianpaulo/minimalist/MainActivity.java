@@ -19,14 +19,21 @@ import android.widget.*;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    /**
+     *
+     * @param savedInstanceState Looks for saved Android Application States; "Resume" Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-
+    /**
+     * Menu creation onClick
+     * @param menu
+     * @return true on 'success'
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -34,6 +41,11 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * OnClick of R.id.action_add_task, create new AlertDialog with TextView and Input
+     * @param item
+     * @return true on 'success'
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -19,7 +19,13 @@ android {
     }
 }
 
+apply plugin: 'android-unit-test'
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    testCompile 'org.easytesting:fest:1.0.16'
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.robolectric:robolectric:2.3'
+    testCompile 'com.squareup:fest-android:1.0.8'
 }
