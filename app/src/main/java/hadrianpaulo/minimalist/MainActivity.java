@@ -71,6 +71,7 @@ public class MainActivity extends Activity {
 
     /**
      * ListView Listener that implements deleting of items through "long press"
+     *
      */
 
     private void setupListViewListener() {
