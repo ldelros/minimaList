@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/hadrian/Academics/CIE 123/MinimaList/executorproject/libs/executor.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="521e4f4e71a1fa28a15121db6b85b904331ca73c">
+        <dex dex="/home/hadrian/Academics/CIE 123/MinimaList/executorproject/build/intermediates/pre-dexed/test/debug/executor-f2f8d405c5dcb79fa71102158117b3688a6596b2.jar" />
+    </item>
+    <item
+        jar="/home/hadrian/Academics/CIE 123/MinimaList/executorproject/build/intermediates/exploded-aar/ExecutorLibrary/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e77619161f7aa7bf7cfff12a4c0f91889b52bed8">
+        <dex dex="/home/hadrian/Academics/CIE 123/MinimaList/executorproject/build/intermediates/pre-dexed/test/debug/classes-d928c00b93f04f07900e520856c2dd4f935d9df3.jar" />
+    </item>
+
+</items>
