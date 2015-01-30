@@ -25,54 +25,6 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     }
 
-    @LargeTest
-    public class HelloWorldEspressoTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-        public HelloWorldEspressoTest() {
-            super(MainActivity.class);
-        }
-
-        @Override
-        public void setUp() throws Exception {
-            super.setUp();
-            getActivity();
-        }
-
-        public void testListGoesOverTheFold() {
-            onView(withText("Hello world!")).check(ViewAssertions.matches(isDisplayed()));
-        }
-    }
-
-    @RunWith(AndroidJUnit4.class)
-    @LargeTest
-    public class MyJunit4ActivityInstrumentationTest
-            extends ActivityInstrumentationTestCase2<MainActivity> {
-
-        private MainActivity mActivity;
-
-        public MyJunit4ActivityInstrumentationTest() {
-            super(MainActivity.class);
-        }
-
-        @Before
-        public void setUp() throws Exception {
-            super.setUp();
-            injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-            mActivity = getActivity();
-        }
-
-        @Test
-        public void checkPreconditions() {
-            assertNotNull(mActivity);
-            // Check that Instrumentation was correctly injected in setUp()
-            assertNotNull(getInstrumentation());
-        }
-
-        @After
-        public void tearDown() throws Exception {
-            super.tearDown();
-        }
-
-    }
 
  }
