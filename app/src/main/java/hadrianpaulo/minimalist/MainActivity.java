@@ -1,75 +1,67 @@
 package hadrianpaulo.minimalist;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
-    /**
-     *
-     * @param savedInstanceState Looks for saved Android Application States; "Resume" Activity
-     */
+public class MainActivity extends Activity {
+
+    private ArrayList<String> items;
+    private ArrayAdapter<String> itemsAdapter;
+    private ListView lvItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // ADD HERE
+        lvItems = (ListView) findViewById(R.id.lvItems);
+        items = new ArrayList<String>();
+        itemsAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, items);
+        lvItems.setAdapter(itemsAdapter);
+        items.add("First Item");
+        items.add("Second Item");
     }
 
-    /**
-     * Menu creation onClick
-     * @param menu
-     * @return true on 'success'
-     */
+    public void onAddItem(View v) {
+        EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+        String itemText = etNewItem.getText().toString();
+        itemsAdapter.add(itemText);
+        etNewItem.setText("");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    /**
-     * OnClick of R.id.action_add_task, create new AlertDialog with TextView and Input
-     * @param item
-     * @return true on 'success'
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add_task:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Add a task");
-                builder.setMessage("What do you want to do?");
-                final EditText inputField = new EditText(this);
-                builder.setView(inputField);
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+    private void setupListViewListener() {
+        lvItems.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("MainActivity",inputField.getText().toString()); // Testing purposes using LogCat
+                    public boolean onItemLongClick(AdapterView<?> adapter,
+                                                   View item, int pos, long id) {
+                        // Remove the item within array at position
+                        items.remove(pos);
+                        // Refresh the adapter
+                        itemsAdapter.notifyDataSetChanged();
+                        // Return true consumes the long click event (marks it handled)
+                        return true;
                     }
+
                 });
-
-                builder.setNegativeButton("Cancel",null);
-
-                builder.create().show();
-                return true;
-
-
-            default:
-                return false;
-        }
     }
 }
