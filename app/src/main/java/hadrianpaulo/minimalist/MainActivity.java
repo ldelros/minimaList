@@ -30,8 +30,10 @@ public class MainActivity extends Activity {
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+        items.add("Test Item #1");
+        items.add("Test Item #2");
+        // Setup remove listener method call
+        setupListViewListener();
     }
 
     public void onAddItem(View v) {
