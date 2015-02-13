@@ -14,6 +14,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.longClick;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 
 /**
@@ -38,9 +43,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             getActivity();
         }
 
-        public void testListGoesOverTheFold() {
-            onView(withText("Hello world!")).check(ViewAssertions.matches(isDisplayed()));
-        }
+
     }
 
     @RunWith(AndroidJUnit4.class)
@@ -66,6 +69,49 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             assertNotNull(mActivity);
             // Check that Instrumentation was correctly injected in setUp()
             assertNotNull(getInstrumentation());
+        }
+
+        @Test
+        public void addListItem(){
+            onView(withId(R.id.btnAddItem))      // withId(R.id.my_view) is a ViewMatcher
+                    .perform(typeText("Hello I'm a new list item"), click())               // click() is a ViewAction
+                    .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
+        }
+        public void addMultipleListItems(){
+            for (int i = 0; i <= 10; i++) {
+                onView(withId(R.id.btnAddItem))      // withId(R.id.my_view) is a ViewMatcher
+                        .perform(typeText("Hello I'm a new list item " + (int)i), click())               // click() is a ViewAction
+                        .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
+            }
+        }
+        @Test
+        public void deleteListItem(){
+            onView(withId(R.id.btnAddItem))      // withId(R.id.my_view) is a ViewMatcher
+                    .perform(longClick())               // click() is a ViewAction
+                    .check(doesNotExist()); // matches(isDisplayed()) is a ViewAssertion
+        }
+        @Test
+        public void createDeleteListItem(){
+            onView(withId(R.id.btnAddItem))      // withId(R.id.my_view) is a ViewMatcher
+                    .perform(typeText("Hello I'm gonna be deleted "), click())               // click() is a ViewAction
+                    .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
+            onView(withText("Hello I'm gonna be deleted "))
+                    .perform(longClick())
+                    .check(doesNotExist());
+        }
+
+        @Test
+        public void createDeleteMultipleListItems(){
+            for (int i = 0; i <= 10; i++) {
+                onView(withId(R.id.btnAddItem))      // withId(R.id.my_view) is a ViewMatcher
+                        .perform(typeText("Hello I'm gonna be deleted " + (int) i), click())               // click() is a ViewAction
+                        .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
+            }
+            for (int i = 0; i <= 10; i++) {
+                onView(withText("Hello I'm gonna be deleted " + (int) i))
+                        .perform(longClick())
+                        .check(doesNotExist());
+            }
         }
 
         @After
