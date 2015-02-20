@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Main activity class
@@ -53,8 +54,11 @@ public class MainActivity extends Activity {
      */
 
     public void onAddItem(View v) {
+
+        Calendar rightNow = Calendar.getInstance();
+        String date = String.format("%1$tb %1$td", rightNow);
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-        String itemText = etNewItem.getText().toString();
+        String itemText = etNewItem.getText().toString() + "  --" + date;
         itemsAdapter.add(itemText);
         etNewItem.setText("");
         writeItems();
