@@ -3,6 +3,12 @@
 #### Hadrian Paulo Lim & Luis Miguel del Rosario
 
 --
+## Features
+1. Add Tasks
+2. Remove Tasks
+3. Task date stamp
+4. Text file saving/persistence
+
 ## Requirements
 ### Compatibility
 Android 4.0 and up!
