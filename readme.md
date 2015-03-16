@@ -9,6 +9,9 @@
 3. Task date stamp
 4. Text file saving/persistence
 
+### Screenshot
+![minimaList](http://i.imgur.com/70LcAI1.png)
+
 ## Requirements
 ### Compatibility
 Android 4.0 and up!
